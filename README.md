@@ -101,6 +101,9 @@ Smart_Request_IA/
 ├── /evidencia                      → capturas del flujo en funcionamiento
 └── /video                          → demo del sistema en ejecución
 
+Enlace: 
+https://airtable.com/invite/l?inviteId=invSpkKGmSec3tiBI&inviteToken=16b934545f1ad86267abbd9612a8aa352b7a8c4f16e97a3fe7fb5a63875cf8a2&utm_medium=email&utm_source=product_team&utm_content=transactional-alerts
+
 Conclusión
 
 Smart Request IA demuestra cómo la combinación de automatización, inteligencia artificial y supervisión humana permite optimizar procesos administrativos, reducir tiempos de respuesta y mejorar la calidad de la gestión de requerimientos. El proyecto constituye una base escalable para futuras soluciones desarrolladas por Evelin Bordón, en el marco de BC_Proyectos.
