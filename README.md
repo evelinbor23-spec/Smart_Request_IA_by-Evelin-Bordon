@@ -3,18 +3,15 @@ Smart Request IA
 Automatización inteligente para la gestión de solicitudes de clientes
 
 Trabajo final — Automatización con IA
-Desarrollado por Evelin Bordón · BC_Proyectos · Julio 2026
+Desarrollado por Evelin Bordón  · Julio 2026
 
 
 Resumen
-
 Smart Request IA automatiza la recepción, clasificación y gestión inicial de los requerimientos que los clientes envían por correo electrónico. Combina automatización de procesos, inteligencia artificial generativa y validación humana para reducir tiempos operativos, mejorar la trazabilidad y estandarizar la gestión de solicitudes.
 
 Objetivo: automatizar la recepción y clasificación de solicitudes comerciales, permitiendo que cada requerimiento sea registrado, analizado y priorizado automáticamente antes de su revisión por el equipo responsable.
 
 Problemática
-
-
 Recepción manual de correos
 Clasificación subjetiva y no estandarizada
 Riesgo de pérdida de solicitudes
@@ -23,8 +20,6 @@ Demoras en la asignación al equipo correcto
 
 
 Solución propuesta
-
-
 Detecta nuevos correos automáticamente
 Registra la solicitud en la base de datos
 Analiza el contenido mediante IA (Gemini)
@@ -39,7 +34,6 @@ Dos flujos independientes en n8n, sincronizados a través de Airtable como memor
 
 Flujo 1 · Disparado por Gmail
 
-
 Llega el mail (Gmail Trigger)
 Se marca como leído — evita reprocesos
 Se crea el registro en Airtable
@@ -50,7 +44,6 @@ Si hay error → alerta al equipo por mail
 
 Flujo 2 · Disparado por Schedule (cada 1 min)
 
-
 Schedule Trigger
 Busca en Airtable solicitudes Aprobadas / Rechazadas
 Responde al cliente en el mismo hilo de correo
@@ -58,11 +51,9 @@ Actualiza el estado a "Enviado"
 
 
 Herramientas utilizadas
-
 HerramientaFunciónn8nOrquestación del flujo end-to-endGmailEntrada de solicitudes y salida de respuestasAirtableBase de datos central (memoria del sistema)Google GeminiMotor de IA generativa para clasificaciónGitHubVersionado y documentación del proyecto
 
 Inteligencia artificial
-
 Google Gemini analiza el asunto del correo, la descripción de la solicitud, la urgencia declarada y la complejidad estimada, y devuelve un JSON estructurado con la clasificación completa del requerimiento, sin ambigüedad ni texto libre:
 
 json{
@@ -85,9 +76,7 @@ Rechazada → se responde al cliente en el mismo hilo informando que la solicitu
 
 
 Resultados y resiliencia
-
 Validado durante las pruebas:
-
 
 Registro automático de cada solicitud
 Clasificación automática consistente
