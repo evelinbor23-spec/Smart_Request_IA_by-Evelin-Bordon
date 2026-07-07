@@ -3,15 +3,18 @@ Smart Request IA
 Automatización inteligente para la gestión de solicitudes de clientes
 
 Trabajo final — Automatización con IA
-Desarrollado por Evelin Bordón  · Julio 2026
+Desarrollado por Evelin Bordón · BC_Proyectos · Julio 2026
 
 
 Resumen
+
 Smart Request IA automatiza la recepción, clasificación y gestión inicial de los requerimientos que los clientes envían por correo electrónico. Combina automatización de procesos, inteligencia artificial generativa y validación humana para reducir tiempos operativos, mejorar la trazabilidad y estandarizar la gestión de solicitudes.
 
 Objetivo: automatizar la recepción y clasificación de solicitudes comerciales, permitiendo que cada requerimiento sea registrado, analizado y priorizado automáticamente antes de su revisión por el equipo responsable.
 
 Problemática
+
+
 Recepción manual de correos
 Clasificación subjetiva y no estandarizada
 Riesgo de pérdida de solicitudes
@@ -20,6 +23,8 @@ Demoras en la asignación al equipo correcto
 
 
 Solución propuesta
+
+
 Detecta nuevos correos automáticamente
 Registra la solicitud en la base de datos
 Analiza el contenido mediante IA (Gemini)
@@ -34,6 +39,7 @@ Dos flujos independientes en n8n, sincronizados a través de Airtable como memor
 
 Flujo 1 · Disparado por Gmail
 
+
 Llega el mail (Gmail Trigger)
 Se marca como leído — evita reprocesos
 Se crea el registro en Airtable
@@ -44,16 +50,30 @@ Si hay error → alerta al equipo por mail
 
 Flujo 2 · Disparado por Schedule (cada 1 min)
 
+
 Schedule Trigger
 Busca en Airtable solicitudes Aprobadas / Rechazadas
 Responde al cliente en el mismo hilo de correo
 Actualiza el estado a "Enviado"
 
 
+Arquitectura de datos en Airtable
+
+La base no es una tabla plana: está compuesta por dos tablas relacionadas, para evitar datos aislados y permitir escalar la gestión de equipos sin tocar el flujo.
+
+
+Solicitudes — registro principal de cada requerimiento (datos del cliente, clasificación de la IA, estado, aprobación humana). Incluye un campo Link to another record que vincula cada solicitud con su equipo responsable.
+Equipos_Responsables — catálogo de equipos disponibles (nombre, capacidad, canal de contacto), referenciado desde la tabla Solicitudes.
+
+
+🔗 Base de datos (solo lectura): https://airtable.com/appCl3l8wMg04OFVh/shrIjfyurzqTK5RJI
+
 Herramientas utilizadas
+
 HerramientaFunciónn8nOrquestación del flujo end-to-endGmailEntrada de solicitudes y salida de respuestasAirtableBase de datos central (memoria del sistema)Google GeminiMotor de IA generativa para clasificaciónGitHubVersionado y documentación del proyecto
 
 Inteligencia artificial
+
 Google Gemini analiza el asunto del correo, la descripción de la solicitud, la urgencia declarada y la complejidad estimada, y devuelve un JSON estructurado con la clasificación completa del requerimiento, sin ambigüedad ni texto libre:
 
 json{
@@ -76,7 +96,9 @@ Rechazada → se responde al cliente en el mismo hilo informando que la solicitu
 
 
 Resultados y resiliencia
+
 Validado durante las pruebas:
+
 
 Registro automático de cada solicitud
 Clasificación automática consistente
@@ -99,10 +121,8 @@ Smart_Request_IA/
 ├── Smart_Request_IA_Final.pdf     → presentación completa del proyecto
 ├── workflow.json                   → export del flujo n8n
 ├── /evidencia                      → capturas del flujo en funcionamiento
+│                                      (incluye la relación entre tablas Solicitudes ↔ Equipos_Responsables)
 └── /video                          → demo del sistema en ejecución
-
-Enlace: 
-https://airtable.com/invite/l?inviteId=invSpkKGmSec3tiBI&inviteToken=16b934545f1ad86267abbd9612a8aa352b7a8c4f16e97a3fe7fb5a63875cf8a2&utm_medium=email&utm_source=product_team&utm_content=transactional-alerts
 
 Conclusión
 
